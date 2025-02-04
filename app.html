@@ -59,15 +59,17 @@
     <script>
         function updateBarcode() {
             let gs1String = "";
+            let debugGS1String = "";
             document.querySelectorAll(".field-container").forEach(field => {
                 const ai = field.getAttribute("data-ai");
                 const value = field.querySelector("input").value.trim();
                 if (value) {
                     gs1String += ai + value;
+                    debugGS1String += `(${ai}) ${value}`;
                 }
             });
             
-            document.getElementById("output").innerText = gs1String;
+            document.getElementById("output").innerText = debugGS1String;
             
             if (gs1String.length > 2) {
                 JsBarcode("#barcode", gs1String, {
