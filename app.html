@@ -39,30 +39,33 @@
             <label>Expiration Date (17)</label>
             <input type="text" placeholder="YYMMDD" oninput="updateBarcode()">
         </div>
+        <div class="field-container" data-ai="21">
+            <label>Serial Number (21)</label>
+            <input type="text" placeholder="Enter Serial Number" oninput="updateBarcode()">
+        </div>
+        <div class="field-container" data-ai="30">
+            <label>Quantity (30)</label>
+            <input type="text" placeholder="Enter Quantity" oninput="updateBarcode()">
+        </div>
     </div>
     
     <h3>Generated GS1 String:</h3>
+    <p id="output"></p>
     
     <svg id="barcode"></svg>
-    <p id="outputDebug"></p>
 
     <script>
         function updateBarcode() {
             let gs1String = "";
-            let debugGS1String = "";
-
             document.querySelectorAll(".field-container").forEach(field => {
                 const ai = field.getAttribute("data-ai");
                 const value = field.querySelector("input").value.trim();
                 if (value) {
                     gs1String += ai + value;
                 }
-                if(value){
-                    debugGS1String += `(${ai}) ${value} `;
-                }
             });
             
-            document.getElementById("outputDebug").innerText = debugGS1String;
+            document.getElementById("output").innerText = gs1String;
             
             if (gs1String.length > 2) {
                 JsBarcode("#barcode", gs1String, {
