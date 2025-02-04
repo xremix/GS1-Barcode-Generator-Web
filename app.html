@@ -46,7 +46,10 @@
         </div>
 
         <h3 class="mt-4">Generated GS1 String:</h3>
-        <p id="output" class="fw-bold"></p>
+        <div class="alert alert-success">
+            <div id="debugOutput"></div>
+            <pre id="output" style="font-weight: bold; font-size: 1.5em;"></pre>
+        </div>
         <div class="row">
             <div class="col-6" style="min-height: 50px">
                 <div class="card text-center">
@@ -81,16 +84,17 @@
                 const value = field.querySelector("input").value.trim();
                 if (value) {
                     gs1String += ai + value;
-                    debugGS1String += `(${ai}) ${value}`;
+                    debugGS1String += `(${ai}) ${value} `;
                 }
             });
 
-            document.getElementById("output").innerText = debugGS1String;
+            document.getElementById("output").innerText = gs1String.trim();
+            document.getElementById("debugOutput").innerText = debugGS1String.trim();
 
             if (gs1String.length > 2) {
                 JsBarcode("#barcode", gs1String, {
                     format: "CODE128",
-                    displayValue: true
+                    displayValue: true,
                 });
 
                 document.getElementById("datamatrix").innerHTML = DATAMatrix(gs1String).outerHTML;

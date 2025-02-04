@@ -8,6 +8,8 @@ This project is a simple web-based application for generating GS1 barcodes. It a
 - Real-time generation of GS1 barcode string
 - Visualization of the generated barcode using JsBarcode
 
+![Screenshot](./Screenshot.png)
+
 ## Getting Started
 
 ### Prerequisites
