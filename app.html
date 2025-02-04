@@ -10,54 +10,68 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body class="container py-4">
-    <h2 class="mb-4">GS1 Barcode Generator</h2>
+<body class="">
 
-    <div id="fields-container" class="row g-3">
-        <div class="col-md-6" data-ai="01">
-            <label class="form-label">GTIN (01)</label>
-            <input type="text" class="form-control" placeholder="8, 12, 13, or 14 digits" oninput="updateBarcode()">
-        </div>
-        <div class="col-md-6" data-ai="10">
-            <label class="form-label">Batch Number (10)</label>
-            <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
-        </div>
-        <div class="col-md-6" data-ai="17">
-            <label class="form-label">Expiration Date (17)</label>
-            <input type="text" class="form-control" placeholder="YYMMDD" oninput="updateBarcode()">
-        </div>
-        <div class="col-md-6" data-ai="21">
-            <label class="form-label">Serial Number (21)</label>
-            <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
-        </div>
-        <div class="col-md-6" data-ai="30">
-            <label class="form-label">Quantity (30)</label>
-            <input type="text" class="form-control" placeholder="Max 8 numeric characters" oninput="updateBarcode()">
-        </div>
-    </div>
-
-    <h3 class="mt-4">Generated GS1 String:</h3>
-    <p id="output" class="fw-bold"></p>
-<div class="row">
-    <div class="col-6">
-        <div class="card" style="width: 18rem;">
-            <div id="datamatrix" class="card-img-top"></div>
-            <div class="card-body">
-                <h5 class="card-title">Data Matrix</h5>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Web GS1 Generator</a>
+            
             </div>
         </div>
-    </div>
-    <div class="col-6">
-        <div class="card" style="width: 18rem;">
-            <svg id="barcode" class="cord-img-top"></svg>
-            <div class="card-body">
-                <h5 class="card-title">Code 128</h5>
+    </nav>
+
+    <div class="container py-4">
+
+        <div id="fields-container" class="row g-3">
+            <div class="col-md-6" data-ai="01">
+                <label class="form-label">GTIN (01)</label>
+                <input type="text" class="form-control" placeholder="8, 12, 13, or 14 digits" oninput="updateBarcode()">
+            </div>
+            <div class="col-md-6" data-ai="10">
+                <label class="form-label">Batch Number (10)</label>
+                <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
+            </div>
+            <div class="col-md-6" data-ai="17">
+                <label class="form-label">Expiration Date (17)</label>
+                <input type="text" class="form-control" placeholder="YYMMDD" oninput="updateBarcode()">
+            </div>
+            <div class="col-md-6" data-ai="21">
+                <label class="form-label">Serial Number (21)</label>
+                <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
+            </div>
+            <div class="col-md-6" data-ai="30">
+                <label class="form-label">Quantity (30)</label>
+                <input type="text" class="form-control" placeholder="Max 8 numeric characters" oninput="updateBarcode()">
             </div>
         </div>
+
+        <h3 class="mt-4">Generated GS1 String:</h3>
+        <p id="output" class="fw-bold"></p>
+        <div class="row">
+            <div class="col-6" style="min-height: 50px">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Matrix</h5>
+                    </div>
+                    <div id="datamatrix" class="card-img-top"></div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Code 128</h5>
+                    </div>
+                    <div class="cord-img-top">
+                        <svg id="barcode" ></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info mt-4">
+            Disclaimer: This little helper tool is for test purposes only. It does not validate the barcode don't follow the GS1 standard. Do not use for any production purposes.
+        </div>
     </div>
-</div>
-
-
     <script>
         function updateBarcode() {
             let gs1String = "";
