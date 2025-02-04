@@ -52,7 +52,7 @@
                 <label class="form-label">GTIN (01)</label>
                 <input type="text" class="form-control" placeholder="8, 12, 13, or 14 digits" oninput="updateBarcode()">
             </div>
-            <div class="col-md-6" data-ai="10">
+            <div class="col-md-6" data-ai="10" data-groupSeparator="true">
                 <label class="form-label">Batch Number (10)</label>
                 <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
             </div>
@@ -60,11 +60,11 @@
                 <label class="form-label">Expiration Date (17)</label>
                 <input type="text" class="form-control" placeholder="YYMMDD" oninput="updateBarcode()">
             </div>
-            <div class="col-md-6" data-ai="21">
+            <div class="col-md-6" data-ai="21" data-groupSeparator="true">
                 <label class="form-label">Serial Number (21)</label>
                 <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
             </div>
-            <div class="col-md-6" data-ai="30">
+            <div class="col-md-6" data-ai="30" data-groupSeparator="true">
                 <label class="form-label">Quantity (30)</label>
                 <input type="text" class="form-control" placeholder="Max 8 numeric characters" oninput="updateBarcode()">
             </div>
@@ -102,14 +102,20 @@
     </div>
     <script>
         function updateBarcode() {
+            const GS = String.fromCharCode(29);
             let gs1String = "";
             let debugGS1String = "";
+            
             document.querySelectorAll("[data-ai]").forEach(field => {
                 const ai = field.getAttribute("data-ai");
                 const value = field.querySelector("input").value.trim();
                 if (value) {
                     gs1String += ai + value;
                     debugGS1String += `(${ai}) ${value} `;
+                    if (field.getAttribute("data-groupSeparator") === "true") {
+                        gs1String += GS;
+                        debugGS1String += "GS ";
+                    }
                 }
             });
 
