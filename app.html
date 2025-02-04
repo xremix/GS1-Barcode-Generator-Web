@@ -40,34 +40,13 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Web GS1 Generator</a>
-            
-            </div>
         </div>
     </nav>
 
     <div class="container py-4">
 
         <div id="fields-container" class="row g-3">
-            <div class="col-md-6" data-ai="01">
-                <label class="form-label">GTIN (01)</label>
-                <input type="text" class="form-control" placeholder="8, 12, 13, or 14 digits" oninput="updateBarcode()">
-            </div>
-            <div class="col-md-6" data-ai="10" data-groupSeparator="true">
-                <label class="form-label">Batch Number (10)</label>
-                <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
-            </div>
-            <div class="col-md-6" data-ai="17">
-                <label class="form-label">Expiration Date (17)</label>
-                <input type="text" class="form-control" placeholder="YYMMDD" oninput="updateBarcode()">
-            </div>
-            <div class="col-md-6" data-ai="21" data-groupSeparator="true">
-                <label class="form-label">Serial Number (21)</label>
-                <input type="text" class="form-control" placeholder="Max. 20 alphanumeric characters" oninput="updateBarcode()">
-            </div>
-            <div class="col-md-6" data-ai="30" data-groupSeparator="true">
-                <label class="form-label">Quantity (30)</label>
-                <input type="text" class="form-control" placeholder="Max 8 numeric characters" oninput="updateBarcode()">
-            </div>
+            <!-- Form fields will be generated here -->
         </div>
 
         <h3 class="mt-4">Generated GS1 String:</h3>
@@ -101,6 +80,74 @@
         </div>
     </div>
     <script>
+        const formFields = [
+            {
+                "label": "GTIN (01)",
+                "placeholder": "8, 12, 13, or 14 digits",
+                "dataAi": "01",
+                "maxLength": 14
+            },
+            {
+                "label": "Batch Number (10)",
+                "placeholder": "Max. 20 alphanumeric characters",
+                "dataAi": "10",
+                "maxLength": 20,
+                "groupSeparator": true
+            },
+            {
+                "label": "Expiration Date (17)",
+                "placeholder": "YYMMDD",
+                "dataAi": "17",
+                "maxLength": 6
+            },
+            {
+                "label": "Serial Number (21)",
+                "placeholder": "Max. 20 alphanumeric characters",
+                "dataAi": "21",
+                "maxLength": 20,
+                "groupSeparator": true
+            },
+            {
+                "label": "Quantity (30)",
+                "placeholder": "Max 8 numeric characters",
+                "dataAi": "30",
+                "maxLength": 8,
+                "groupSeparator": true
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const fieldsContainer = document.getElementById('fields-container');
+
+            formFields.forEach(field => {
+                const colDiv = document.createElement('div');
+                colDiv.className = 'col-md-6';
+                colDiv.setAttribute('data-ai', field.dataAi);
+
+                if (field.groupSeparator) {
+                    colDiv.setAttribute('data-groupSeparator', true);
+                }
+
+                const label = document.createElement('label');
+                label.className = 'form-label';
+                label.textContent = field.label;
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'form-control';
+                input.placeholder = field.placeholder;
+                input.oninput = updateBarcode;
+
+                if (field.maxLength) {
+                    input.maxLength = field.maxLength;
+                }
+
+                colDiv.appendChild(label);
+                colDiv.appendChild(input);
+                fieldsContainer.appendChild(colDiv);
+            });
+        });
+
         function updateBarcode() {
             const GS = String.fromCharCode(29);
             let gs1String = "";
