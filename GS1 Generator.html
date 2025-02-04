@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GS1 Barcode Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .field-container {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input {
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h2>GS1 Barcode Generator</h2>
+    
+    <div id="fields-container">
+        <div class="field-container" data-ai="01">
+            <label>GTIN (01)</label>
+            <input type="text" placeholder="Enter GTIN" oninput="updateBarcode()">
+        </div>
+        <div class="field-container" data-ai="10">
+            <label>Batch Number (10)</label>
+            <input type="text" placeholder="Enter Batch Number" oninput="updateBarcode()">
+        </div>
+        <div class="field-container" data-ai="17">
+            <label>Expiration Date (17)</label>
+            <input type="text" placeholder="YYMMDD" oninput="updateBarcode()">
+        </div>
+    </div>
+    
+    <h3>Generated GS1 String:</h3>
+    
+    <svg id="barcode"></svg>
+    <p id="outputDebug"></p>
+
+    <script>
+        function updateBarcode() {
+            let gs1String = "";
+            let debugGS1String = "";
+
+            document.querySelectorAll(".field-container").forEach(field => {
+                const ai = field.getAttribute("data-ai");
+                const value = field.querySelector("input").value.trim();
+                if (value) {
+                    gs1String += ai + value;
+                }
+                if(value){
+                    debugGS1String += `(${ai}) ${value} `;
+                }
+            });
+            
+            document.getElementById("outputDebug").innerText = debugGS1String;
+            
+            if (gs1String.length > 2) {
+                JsBarcode("#barcode", gs1String, {
+                    format: "CODE128",
+                    displayValue: true
+                });
+            }
+        }
+    </script>
+</body>
+</html>
