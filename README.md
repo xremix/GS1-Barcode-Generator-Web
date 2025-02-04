@@ -34,6 +34,24 @@ Alternatively, you can run the generator directly from the following link:
 3. The GS1 barcode string will be generated and displayed in real-time.
 4. The barcode will be visualized below the input fields.
 
+### Prefilling Form Values Using URL Parameters
+
+You can prefill the form values by passing parameters in the URL. Each parameter corresponds to the data-ai attribute of the input fields. The format is ?key=value, where key is the data-ai value and value is the input value you want to prefill
+
+#### Prefill GTIN (01)
+
+`app.html?01=12345678`
+
+*This URL will prefill the GTIN field with the value 12345678.*
+
+#### Prefill Batch Number (10) and Expiration Date (17)
+
+`app.html?01=12345678&10=Batch123&17=230101&21=Serial001&30=100`
+
+This URL will prefill the Batch Number field with Batch123 and the Expiration Date field with 230101.
+
+
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request.
