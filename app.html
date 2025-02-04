@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GS1 Barcode Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script src="https://rawcdn.githack.com/datalog/datamatrix-svg/2a678f5a4c45a783c3b024c2df76f36ad32667dc/datamatrix.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,6 +54,7 @@
     <p id="output"></p>
     
     <svg id="barcode"></svg>
+    <div id="datamatrix"></div>
 
     <script>
         function updateBarcode() {
@@ -72,6 +74,9 @@
                     format: "CODE128",
                     displayValue: true
                 });
+                
+                document.getElementById("datamatrix").innerHTML = "";
+                document.getElementById("datamatrix").innerHTML = DATAMatrix(gs1String).outerHTML;
             }
         }
     </script>
