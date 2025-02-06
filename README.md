@@ -12,7 +12,6 @@ This project is a simple web-based application for generating GS1 barcodes. It a
 - Real-time generation of GS1 barcode string
 - Visualization of the generated barcode using JsBarcode
 
-
 ## Getting Started
 
 ### Prerequisites
@@ -22,9 +21,11 @@ To run this project, you need a web browser with internet access.
 ### Running the Application
 
 1. Clone the repository:
+
     ```sh
     git clone https://github.com/xremix/GS1-Generator-Web.git
     ```
+
 2. Open `app.html` in your web browser.
 
 ## Usage
