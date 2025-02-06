@@ -28,7 +28,6 @@
                     inputContainer.querySelector('input').value = params[ai];
                 }
             });
-            updateBarcode();
         }
 
         window.onload = prefillForm;
@@ -59,8 +58,8 @@
 
         <h3 class="mt-4">Generated GS1 String:</h3>
         <div class="alert alert-success text-center">
-            <div id="debugOutput"></div>
-            <pre id="output" style="font-weight: bold; font-size: 1.5em;"></pre>
+            <div id="debugOutput">Welcome to the GS1 Barcode Generator!</div>
+            <pre id="output" style="font-weight: bold; font-size: 1.5em;">Fill out the fields above, to generate a barcode</pre>
         </div>
         <div class="row">
             <div class="col-6" style="min-height: 50px">
