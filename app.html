@@ -28,6 +28,10 @@
                     inputContainer.querySelector('input').value = params[ai];
                 }
             });
+            if (Object.keys(params).length > 0){
+
+                updateBarcode();
+            }
         }
 
         window.onload = prefillForm;
