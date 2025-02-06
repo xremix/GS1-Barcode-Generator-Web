@@ -25,7 +25,7 @@ To run this project, you need a web browser with internet access.
 2. Open `app.html` in your web browser.
 
 Alternatively, you can run the generator directly from the following link:
-[Run Generator](https://raw.githack.com/xremix/GS1-Generator-Web/main/app.html)
+[Run Generator](https://raw.githack.com/xremix/GS1-Barcode-Generator-Web/main/app.html)
 
 ## Usage
 
