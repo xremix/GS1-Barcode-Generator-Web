@@ -43,6 +43,9 @@
             padding: 5px;
             border-radius: 8px;
         }
+        svg#barcode{
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -80,7 +83,7 @@
                         <h5 class="card-title">Code 128</h5>
                     </div>
                     <div class="cord-img-top">
-                        <svg id="barcode" ></svg>
+                        <svg id="barcode"></svg>
                     </div>
                 </div>
             </div>
@@ -183,7 +186,7 @@
             if (gs1String.length > 2) {
                 JsBarcode("#barcode", gs1String, {
                     format: "CODE128",
-                    displayValue: true,
+                    displayValue: true
                 });
 
                 document.getElementById("datamatrix").innerHTML = DATAMatrix(gs1String).outerHTML;
