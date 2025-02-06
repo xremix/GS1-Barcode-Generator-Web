@@ -33,6 +33,14 @@
 
         window.onload = prefillForm;
     </script>
+    <style>
+        pre{
+            white-space: pre-wrap;
+            background: rgba(0,0,0,0.1);
+            padding: 5px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body class="">
@@ -50,7 +58,7 @@
         </div>
 
         <h3 class="mt-4">Generated GS1 String:</h3>
-        <div class="alert alert-success">
+        <div class="alert alert-success text-center">
             <div id="debugOutput"></div>
             <pre id="output" style="font-weight: bold; font-size: 1.5em;"></pre>
         </div>
@@ -158,10 +166,10 @@
                 const value = field.querySelector("input").value.trim();
                 if (value) {
                     gs1String += ai + value;
-                    debugGS1String += `(${ai}) ${value} `;
+                    debugGS1String += `(${ai})${value}`;
                     if (field.getAttribute("data-groupSeparator") === "true") {
                         gs1String += GS;
-                        debugGS1String += "␝ ";
+                        debugGS1String += "␝";
                     }
                 }
             });
