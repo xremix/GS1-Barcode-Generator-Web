@@ -2,6 +2,9 @@
 
 This project is a simple web-based application for generating GS1 barcodes. It allows users to input GTIN, Batch Number, and Expiration Date to generate a GS1 barcode string and visualize it using the JsBarcode library.
 
+
+[Run Generator](https://raw.githack.com/xremix/GS1-Barcode-Generator-Web/main/app.html)
+
 ## Features
 
 - Input fields for GTIN, Batch Number, and Expiration Date
@@ -23,9 +26,6 @@ To run this project, you need a web browser with internet access.
     git clone https://github.com/xremix/GS1-Generator-Web.git
     ```
 2. Open `app.html` in your web browser.
-
-Alternatively, you can run the generator directly from the following link:
-[Run Generator](https://raw.githack.com/xremix/GS1-Barcode-Generator-Web/main/app.html)
 
 ## Usage
 
