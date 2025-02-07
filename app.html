@@ -41,7 +41,6 @@
             white-space: pre-wrap;
             background: rgba(0,0,0,0.1);
             padding: 10px;
-            border-radius: 8px;
             font-family: monospace;
             font-weight: bold; 
             font-size: 1.5em;
@@ -71,7 +70,11 @@
         <div class="alert alert-success text-center">
             <div id="debugOutput">Welcome to the GS1 Barcode Generator!</div>
             <div class="mt-4">
-                <input type="text" id="rawInput" class="form-control" placeholder="Enter raw text to generate barcode" oninput="generateBarcodeFromRaw()" value="Fill out the fields above, to generate a barcode">
+                <div class="input-group mb-3">
+                    <input type="text" id="rawInput" class="form-control" placeholder="Enter raw text to generate barcode" oninput="generateBarcodeFromRaw()" value="Fill out the fields above, to generate a barcode">
+
+                    <button onclick="copyGS1()" class="btn btn-secondary input-group-text">Copy</button>
+                  </div>
             </div>
         </div>
         <div class="row">
@@ -231,6 +234,13 @@
             console.log(svgData)
             img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
         }
+        function copyGS1() {
+        navigator.clipboard.writeText(gs1String).then(() => {
+        }).catch(err => {
+            alert('Could not copy the character');
+        });
+    }
+
     function generateBarcodeFromRaw() {
         const rawText = document.getElementById('rawInput').value;
         if (rawText) {
